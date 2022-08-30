@@ -11,7 +11,7 @@ import { ItemsService } from './items.service';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 
-@Controller('items')
+@Controller('v1/items')
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
 
@@ -27,7 +27,7 @@ export class ItemsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.itemsService.findOne(+id);
+    return this.itemsService.findOne(id);
   }
 
   @Patch(':id')

@@ -11,7 +11,7 @@ import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 
-@Controller('category')
+@Controller('v1/categories')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
@@ -27,7 +27,7 @@ export class CategoryController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.categoryService.findOne(+id);
+    return this.categoryService.findOne(id);
   }
 
   @Patch(':id')

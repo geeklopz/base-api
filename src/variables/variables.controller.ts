@@ -1,9 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { VariablesService } from './variables.service';
 import { CreateVariableDto } from './dto/create-variable.dto';
 import { UpdateVariableDto } from './dto/update-variable.dto';
 
-@Controller('variables')
+@Controller('v1/variables')
 export class VariablesController {
   constructor(private readonly variablesService: VariablesService) {}
 

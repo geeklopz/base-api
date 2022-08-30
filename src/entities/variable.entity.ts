@@ -6,28 +6,20 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   Unique,
   UpdateDateColumn,
 } from 'typeorm';
-import { Category } from './category.entity';
-import { Variable } from './variable.entity';
+import { Item } from './item.entity';
 
-@Entity()
-@Unique(['code'])
-export class Item extends BaseEntity {
+@Entity({ name: 'item_variables' })
+@Unique(['name'])
+export class Variable extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ nullable: false })
-  code: string;
-
-  @Column({ nullable: false })
   name: string;
-
-  @Column({ nullable: false })
-  description: string;
 
   @Column({ nullable: false })
   price: string;
@@ -35,10 +27,7 @@ export class Item extends BaseEntity {
   @Column({ name: 'image_url', nullable: false })
   imageUrl: string;
 
-  @Column({
-    name: 'thumbnail_url',
-    nullable: false,
-  })
+  @Column({ name: 'thumbnail_url', nullable: false })
   thumbnailUrl: string;
 
   @CreateDateColumn()
@@ -50,10 +39,7 @@ export class Item extends BaseEntity {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @ManyToOne(() => Category, (category) => category.id)
-  @JoinColumn({ name: 'category_id' })
-  category: Category;
-
-  @OneToMany(() => Variable, (variables) => variables.item)
-  variables: Variable[];
+  @ManyToOne(() => Item, (item) => item.id)
+  @JoinColumn({ name: 'item_id' })
+  item: Item;
 }

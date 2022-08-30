@@ -17,20 +17,17 @@ export class Category extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'category_id' })
-  categoryId: string;
-
-  @Column({ nullable: false, type: 'varchar', length: 255 })
+  @Column({ nullable: false })
   name: string;
 
-  @Column({ nullable: false, type: 'varchar', length: 255 })
+  @Column({ nullable: false })
   description: string;
 
-  @Column({ nullable: false, type: 'varchar', length: 255 })
-  image_url: string;
+  @Column({ name: 'image_url', nullable: false })
+  imageUrl: string;
 
-  @Column({ nullable: false, type: 'varchar', length: 255 })
-  thumbnail_url: string;
+  @Column({ name: 'thumbnail_url', nullable: false })
+  thumbnailUrl: string;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -41,6 +38,6 @@ export class Category extends BaseEntity {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @OneToMany(() => Item, (item) => item.category)
-  item: Item[];
+  @OneToMany(() => Item, (items) => items.category)
+  items: Item[];
 }
